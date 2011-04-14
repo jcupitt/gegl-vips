@@ -1,0 +1,8 @@
+Making all in perlin
+make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
+make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
+  CC      load.c
+  CCLD    load.la
+make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'

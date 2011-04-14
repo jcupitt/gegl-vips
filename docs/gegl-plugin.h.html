@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<TITLE>Enscript Output</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#1F00FF" ALINK="#FF0000" VLINK="#9900DD">
+<A NAME="top">
+<A NAME="file1">
+<H1>../gegl/gegl-plugin.h</H1>
+
+<PRE>
+<I><FONT COLOR="#B22222">/* This file is the public operation GEGL API, this API will change to much
+ * larger degrees than the api provided by gegl.h
+ *
+ * GEGL is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * GEGL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with GEGL; if not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *
+ * 2000-2008 Øyvind Kolås.
+ */</FONT></I>
+
+#<B><FONT COLOR="#5F9EA0">ifndef</FONT></B> <FONT COLOR="#B8860B">__GEGL_PLUGIN_H__</FONT>
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <FONT COLOR="#B8860B">__GEGL_PLUGIN_H__</FONT>
+
+#<B><FONT COLOR="#5F9EA0">ifdef</FONT></B> <FONT COLOR="#B8860B">HAVE_CONFIG_H</FONT>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&quot;config.h&quot;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">endif</FONT></B>
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;string.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;glib-object.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl.h&gt;</FONT></B>
+
+<I><FONT COLOR="#B22222">/* Extra types needed when coding operations */</FONT></I>
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglOperation        GeglOperation;
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglOperationContext GeglOperationContext;
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglPad              GeglPad;
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglConnection       GeglConnection;
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl-matrix.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl-utils.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl-buffer.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl-paramspecs.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gmodule.h&gt;</FONT></B>
+
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglModule     GeglModule;
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglModuleInfo GeglModuleInfo;
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglModuleDB   GeglModuleDB;
+
+<I><FONT COLOR="#B22222">/***
+ * Writing GEGL operations
+ *
+ */</FONT></I>
+
+<I><FONT COLOR="#B22222">/*#include &lt;geglmodule.h&gt;*/</FONT></I>
+
+<I><FONT COLOR="#B22222">/*  increment the ABI version each time one of the following changes:
+ *
+ *  - the libgeglmodule implementation (if the change affects modules).
+ *  - GeglOperation or one of it's base classes changes. (XXX:-
+ *    should be extended so a range of abi versions are accepted.
+ */</FONT></I>
+
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <FONT COLOR="#B8860B">GEGL_MODULE_ABI_VERSION</FONT> 0x000A
+
+<B><FONT COLOR="#228B22">struct</FONT></B> _GeglModuleInfo
+{
+  guint32  abi_version;
+};
+
+GType <B><FONT COLOR="#0000FF">gegl_module_register_type</FONT></B> (GTypeModule     *module,
+                                 GType            parent_type,
+                                 <B><FONT COLOR="#228B22">const</FONT></B> gchar     *type_name,
+                                 <B><FONT COLOR="#228B22">const</FONT></B> GTypeInfo *type_info,
+                                 GTypeFlags       flags);
+
+GeglBuffer     *<B><FONT COLOR="#0000FF">gegl_operation_context_get_source</FONT></B> (GeglOperationContext *self,
+                                                   <B><FONT COLOR="#228B22">const</FONT></B> gchar          *padname);
+GeglBuffer     *<B><FONT COLOR="#0000FF">gegl_operation_context_get_target</FONT></B> (GeglOperationContext *self,
+                                                   <B><FONT COLOR="#228B22">const</FONT></B> gchar          *padname);
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_operation_context_take_object</FONT></B>(GeglOperationContext *context,
+                                                   <B><FONT COLOR="#228B22">const</FONT></B> gchar          *padname,
+                                                   GObject              *data);
+GObject        *<B><FONT COLOR="#0000FF">gegl_operation_context_get_object</FONT></B> (GeglOperationContext *context,
+                                                   <B><FONT COLOR="#228B22">const</FONT></B> gchar          *padname);
+
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_extension_handler_register</FONT></B>    (<B><FONT COLOR="#228B22">const</FONT></B> gchar         *extension,
+                                                    <B><FONT COLOR="#228B22">const</FONT></B> gchar         *handler);
+<B><FONT COLOR="#228B22">void</FONT></B>            gegl_extension_handler_register_saver
+                                                   (<B><FONT COLOR="#228B22">const</FONT></B> gchar         *extension,
+                                                    <B><FONT COLOR="#228B22">const</FONT></B> gchar         *handler);
+<B><FONT COLOR="#228B22">const</FONT></B> gchar   * <B><FONT COLOR="#0000FF">gegl_extension_handler_get</FONT></B>         (<B><FONT COLOR="#228B22">const</FONT></B> gchar         *extension);
+<B><FONT COLOR="#228B22">const</FONT></B> gchar   * <B><FONT COLOR="#0000FF">gegl_extension_handler_get_saver</FONT></B>   (<B><FONT COLOR="#228B22">const</FONT></B> gchar         *extension);
+
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;glib-object.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;babl/babl.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-filter.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-area-filter.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-point-filter.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-composer.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-composer3.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-point-composer.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-point-composer3.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-point-render.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-temporal.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-source.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-sink.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;operation/gegl-operation-meta.h&gt;</FONT></B>
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;gegl-lookup.h&gt;</FONT></B>
+
+#<B><FONT COLOR="#5F9EA0">endif</FONT></B>  <I><FONT COLOR="#B22222">/* __GEGL_PLUGIN_H__ */</FONT></I>
+</PRE>
+<HR>
+<ADDRESS>Generated by <A HREF="http://www.iki.fi/~mtr/genscript/">GNU Enscript 1.6.5.2</A>.</ADDRESS>
+</BODY>
+</HTML>

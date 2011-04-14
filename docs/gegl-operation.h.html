@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+<HEAD>
+<TITLE>Enscript Output</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#1F00FF" ALINK="#FF0000" VLINK="#9900DD">
+<A NAME="top">
+<A NAME="file1">
+<H1>../gegl/operation/gegl-operation.h</H1>
+
+<PRE>
+<I><FONT COLOR="#B22222">/* This file is part of GEGL
+ *
+ * GEGL is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * GEGL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with GEGL; if not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *
+ * Copyright 2003 Calvin Williamson
+ *           2005-2008 Øyvind Kolås
+ */</FONT></I>
+
+#<B><FONT COLOR="#5F9EA0">ifndef</FONT></B> <FONT COLOR="#B8860B">__GEGL_OPERATION_H__</FONT>
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <FONT COLOR="#B8860B">__GEGL_OPERATION_H__</FONT>
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;glib-object.h&gt;</FONT></B>
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&lt;babl/babl.h&gt;</FONT></B>
+
+
+#<B><FONT COLOR="#5F9EA0">include</FONT></B> <B><FONT COLOR="#BC8F8F">&quot;gegl-buffer.h&quot;</FONT></B>
+
+G_BEGIN_DECLS
+
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <FONT COLOR="#B8860B">GEGL_TYPE_OPERATION</FONT>            (gegl_operation_get_type ())
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <B><FONT COLOR="#0000FF">GEGL_OPERATION</FONT></B>(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEGL_TYPE_OPERATION, GeglOperation))
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <B><FONT COLOR="#0000FF">GEGL_OPERATION_CLASS</FONT></B>(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEGL_TYPE_OPERATION, GeglOperationClass))
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <B><FONT COLOR="#0000FF">GEGL_IS_OPERATION</FONT></B>(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEGL_TYPE_OPERATION))
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <B><FONT COLOR="#0000FF">GEGL_IS_OPERATION_CLASS</FONT></B>(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEGL_TYPE_OPERATION))
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <B><FONT COLOR="#0000FF">GEGL_OPERATION_GET_CLASS</FONT></B>(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEGL_TYPE_OPERATION, GeglOperationClass))
+
+<B><FONT COLOR="#228B22">typedef</FONT></B> <B><FONT COLOR="#228B22">struct</FONT></B> _GeglOperationClass GeglOperationClass;
+
+<B><FONT COLOR="#228B22">struct</FONT></B> _GeglOperation
+{
+  GObject parent_instance;
+
+  <I><FONT COLOR="#B22222">/*&lt; private &gt;*/</FONT></I>
+  GeglNode *node;  <I><FONT COLOR="#B22222">/* the node that this operation object is communicated
+                      with through */</FONT></I>
+};
+
+
+<I><FONT COLOR="#B22222">/***
+ * GeglOperation:
+ * 
+ * All the image processing code in GEGL is implemented as GeglOperations,
+ * GEGL operations are implemented as GObject with a convenience API called
+ * chanting that abstracts away the boiler plater needed to generate introspectable
+ * named properties of different types.
+ *
+ * Most types of operations like: filters, composers, sources, sinks, point
+ * operations, compositing operations, and spatial operations with fixed
+ * neighbourhoods. These base classes build on top of the GeglOperationsClass:
+ *
+ * See &lt;a href='gegl-plugin.h.html'&gt;gegl-plugin.h&lt;/a&gt; for details.
+ */</FONT></I>
+
+#<B><FONT COLOR="#5F9EA0">define</FONT></B> <FONT COLOR="#B8860B">MAX_PROCESSOR</FONT> 4
+
+<B><FONT COLOR="#228B22">void</FONT></B> <B><FONT COLOR="#0000FF">gegl_operation_class_add_processor</FONT></B> (GeglOperationClass *cclass,
+                                         GCallback           process,
+                                         <B><FONT COLOR="#228B22">const</FONT></B> gchar        *string);
+
+<B><FONT COLOR="#228B22">struct</FONT></B> _GeglOperationClass
+{
+  GObjectClass    parent_class;
+
+  <B><FONT COLOR="#228B22">const</FONT></B> gchar    *name;        <I><FONT COLOR="#B22222">/* name(string) used to create/indetify
+                                    this type of operation in GEGL*/</FONT></I>
+  <B><FONT COLOR="#228B22">const</FONT></B> gchar    *compat_name; <I><FONT COLOR="#B22222">/* allows specifying an alias that the op is
+                                  also known as */</FONT></I>
+  <B><FONT COLOR="#228B22">const</FONT></B> gchar    *description; <I><FONT COLOR="#B22222">/* textual description of the operation */</FONT></I>
+  <B><FONT COLOR="#228B22">const</FONT></B> gchar    *categories;  <I><FONT COLOR="#B22222">/* a colon seperated list of categories */</FONT></I>
+
+  gboolean        no_cache;    <I><FONT COLOR="#B22222">/* do not create a cache for this operation */</FONT></I>
+
+  <I><FONT COLOR="#B22222">/* attach this operation with a GeglNode, override this if you are creating a
+   * GeglGraph, it is already defined for Filters/Sources/Composers.
+   */</FONT></I>
+  <B><FONT COLOR="#228B22">void</FONT></B>          (*attach)                    (GeglOperation *operation);
+
+  <I><FONT COLOR="#B22222">/* Initialize the operation, prepare is called when all properties are
+   * known but before processing will begin. Prepare will be invoked one
+   * or multiple times prior to processing.
+   */</FONT></I>
+  <B><FONT COLOR="#228B22">void</FONT></B>          (*prepare)                   (GeglOperation *operation);
+
+  <I><FONT COLOR="#B22222">/* The bounding rectangle for the data that is defined by this op.
+   */</FONT></I>
+  GeglRectangle (*get_bounding_box)          (GeglOperation *operation);
+
+  <I><FONT COLOR="#B22222">/* The output region that is made invalid by a change in the input_roi
+   * rectangle of the buffer passed in on the pad input_pad. Defaults to
+   * returning the input_roi.
+   */</FONT></I>
+  GeglRectangle (*get_invalidated_by_change) (GeglOperation       *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar         *input_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *input_roi);
+
+  <I><FONT COLOR="#B22222">/* The rectangle needed to be correctly computed in a buffer on the named
+   * input_pad, for a given region of interest. Defaults to return the
+   * output_roi.
+   */</FONT></I>
+  GeglRectangle (*get_required_for_output)   (GeglOperation       *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar         *input_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *output_roi);
+
+  <I><FONT COLOR="#B22222">/* The rectangular area that should be processed in one go, by default if not
+   * defined the output roi would be returned. This is useful for file loaders
+   * and operations like contrast stretching which is a point operation but we
+   * need the parameters as the minimum/maximum values in the entire input buffer.
+   */</FONT></I>
+  GeglRectangle (*get_cached_region)         (GeglOperation       *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *output_roi);
+
+  <I><FONT COLOR="#B22222">/* Compute the rectangular region output roi for the specified output_pad.
+   * For operations that are sinks (have no output pads), roi is the rectangle
+   * to consume and the output_pad argument is to be ignored.
+   */</FONT></I>
+  gboolean      (*process)                   (GeglOperation        *operation,
+                                              GeglOperationContext *context,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar          *output_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle  *roi);
+
+  <I><FONT COLOR="#B22222">/* The node providing data for a specific location within the operations
+   * output. The node is responsible for delegating blame to one of it's
+   * inputs taking into account opacity and similar issues.
+   *
+   * XXX: What is GeglNode doing in this part of the API?
+   * Does this recurse?, perhaps we should only point out which pad the
+   * data is coming from?
+   */</FONT></I>
+  GeglNode*     (*detect)                    (GeglOperation       *operation,
+                                              gint                 x,
+                                              gint                 y);
+};
+
+
+
+GType           <B><FONT COLOR="#0000FF">gegl_operation_get_type</FONT></B>        (<B><FONT COLOR="#228B22">void</FONT></B>) G_GNUC_CONST;
+
+GeglRectangle   gegl_operation_get_invalidated_by_change
+                                             (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *input_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *roi);
+GeglRectangle   <B><FONT COLOR="#0000FF">gegl_operation_get_bounding_box</FONT></B>  (GeglOperation *operation);
+
+<I><FONT COLOR="#B22222">/* retrieves the bounding box of an input pad */</FONT></I>
+GeglRectangle * gegl_operation_source_get_bounding_box
+                                             (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *pad_name);
+
+
+GeglRectangle   gegl_operation_get_cached_region
+                                             (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *roi);
+
+GeglRectangle   gegl_operation_get_required_for_output
+                                             (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *input_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *roi);
+
+GeglNode       *<B><FONT COLOR="#0000FF">gegl_operation_detect</FONT></B>        (GeglOperation *operation,
+                                              gint           x,
+                                              gint           y);
+
+
+<I><FONT COLOR="#B22222">/* virtual method invokers that change behavior based on the roi being computed,
+ * needs a context_id being based that is used for storing context data.
+ */</FONT></I>
+
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_operation_attach</FONT></B>        (GeglOperation *operation,
+                                              GeglNode      *node);
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_operation_prepare</FONT></B>       (GeglOperation *operation);
+gboolean        <B><FONT COLOR="#0000FF">gegl_operation_process</FONT></B>       (GeglOperation *operation,
+                                              GeglOperationContext *context,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *output_pad,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *roi);
+
+<I><FONT COLOR="#B22222">/* create a pad for a specified property for this operation, this method is
+ * to be called from the attach method of operations, most operations do not
+ * have to care about this since a super class like filter, sink, source or
+ * composer already does so.
+ */</FONT></I>
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_operation_create_pad</FONT></B>    (GeglOperation *operation,
+                                              GParamSpec    *param_spec);
+
+<I><FONT COLOR="#B22222">/* specify the bablformat for a pad on this operation (XXX: document when
+ * this is legal, at the moment, only used internally in some ops,. but might
+ * turn into a global mechanism) */</FONT></I>
+<B><FONT COLOR="#228B22">void</FONT></B>            <B><FONT COLOR="#0000FF">gegl_operation_set_format</FONT></B>    (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *pad_name,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> Babl    *format);
+
+
+<B><FONT COLOR="#228B22">const</FONT></B> Babl *    <B><FONT COLOR="#0000FF">gegl_operation_get_format</FONT></B>    (GeglOperation *operation,
+                                              <B><FONT COLOR="#228B22">const</FONT></B> gchar   *pad_name);
+
+<B><FONT COLOR="#228B22">const</FONT></B> gchar *   <B><FONT COLOR="#0000FF">gegl_operation_get_name</FONT></B>      (GeglOperation *operation);
+
+
+<I><FONT COLOR="#B22222">/* retrieves the node providing data to a named input pad */</FONT></I>
+GeglNode      * <B><FONT COLOR="#0000FF">gegl_operation_get_source_node</FONT></B> (GeglOperation *operation,
+                                                <B><FONT COLOR="#228B22">const</FONT></B> gchar   *pad_name);
+
+GParamSpec ** <B><FONT COLOR="#0000FF">gegl_list_properties</FONT></B> (<B><FONT COLOR="#228B22">const</FONT></B> gchar *operation_type,
+                                    guint       *n_properties_p);
+
+
+<I><FONT COLOR="#B22222">/* invalidate a specific rectangle, indicating the any computation depending
+ * on this roi is now invalid.
+ *
+ * @roi : the region to blank or NULL for the nodes current have_rect
+ * @clear_cache: whether any present caches should be zeroed out
+ */</FONT></I>
+<B><FONT COLOR="#228B22">void</FONT></B>     <B><FONT COLOR="#0000FF">gegl_operation_invalidate</FONT></B>            (GeglOperation       *operation,
+                                               <B><FONT COLOR="#228B22">const</FONT></B> GeglRectangle *roi,
+                                               gboolean             clear_cache);
+
+<I><FONT COLOR="#B22222">/* internal utility functions used by gegl, these should not be used
+ * externally */</FONT></I>
+gboolean <B><FONT COLOR="#0000FF">gegl_operation_calc_need_rects</FONT></B>      (GeglOperation       *operation,
+                                              gpointer             context_id);
+<B><FONT COLOR="#228B22">void</FONT></B>     <B><FONT COLOR="#0000FF">gegl_operation_path_prop_changed</FONT></B>    (GeglPath            *path,
+                                              GeglOperation       *operation);
+
+G_END_DECLS
+
+<I><FONT COLOR="#B22222">/***
+ */</FONT></I>
+
+#<B><FONT COLOR="#5F9EA0">endif</FONT></B> <I><FONT COLOR="#B22222">/* __GEGL_OPERATION_H__ */</FONT></I>
+</PRE>
+<HR>
+<ADDRESS>Generated by <A HREF="http://www.iki.fi/~mtr/genscript/">GNU Enscript 1.6.5.2</A>.</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,193 @@
+gegl-vips
+
+This is a quick proof-of-concept hack of gegl-0.1.6 to use libvips as the
+backend. 
+
+You need to have the development version of libvips installed (7.25), plus
+babl-0.1.4 or later. Then configure ; make ; make install as usual.
+
+This is the test program we support:
+
+------
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <gegl.h>
+#include <vips/vips.h>
+
+int
+main (int argc, char **argv)
+{
+  GeglNode *gegl, *load, *crop, *scale, *sharp, *save;
+
+  g_thread_init (NULL);
+  gegl_init (&argc, &argv);
+
+  if (argc != 3) 
+    {           
+      fprintf (stderr, "usage: %s file-in file-out\n", argv[0]);
+      exit (1);
+    }
+        
+  gegl = gegl_node_new ();
+        
+  load = gegl_node_new_child (gegl,
+                              "operation", "gegl:load",
+                              "path", argv[1], 
+                              NULL);
+  printf( "load is node %p\n", load );
+
+  crop = gegl_node_new_child (gegl, 
+                              "operation", "gegl:crop",
+                              "x", 100.0,
+                              "y", 100.0,
+                              "width", 4800.0, 
+                              "height", 4800.0, 
+                              NULL);
+  printf( "crop is node %p\n", crop );
+                
+  scale = gegl_node_new_child (gegl,
+                               "operation", "gegl:scale",
+                               "x", 0.9,
+                               "y", 0.9,
+                               "filter", "linear", 
+                               "hard-edges", FALSE, 
+                               NULL);
+  printf( "scale is node %p\n", scale );
+                
+  sharp = gegl_node_new_child (gegl,
+                               "operation", "gegl:unsharp-mask",
+                               "std-dev", 1.2, // diameter 7 mask in vips
+                               //"std-dev", 1.0, // diameter 7 mask in gegl
+                               NULL);
+  printf( "sharp is node %p\n", sharp );
+
+  save = gegl_node_new_child (gegl,
+                              "operation", "gegl:save",
+                              "path", argv[2], 
+                              NULL);
+  printf( "save is node %p\n", save );
+                
+  gegl_node_link_many (load, crop, scale, sharp, save, NULL);
+ 
+  //gegl_node_dump( gegl, 0 );
+
+  gegl_node_process (save);
+
+  //gegl_node_dump( gegl, 0 );
+                
+  g_object_unref (gegl);
+
+  gegl_exit ();
+
+  return (0);
+}
+---
+
+ie. load, crop 100 px off the edges (you need to give it a 5k x 5k RGB image),
+bilinear 10% shrink, sharpen, save
+
+compile with:
+
+   gcc -g -Wall gegl.c `pkg-config gegl vips-7.25 --cflags --libs`
+
+and run with something like:
+
+$ time ./a.out wtc_small.png wtc2.png
+
+or 
+
+$ time ./a.out wtc_small.tif wtc2.tif
+
+(gegl-vips allows most image file formats)
+
+On my laptop I get the following run times:
+
+- gegl-0.1.6, default settings, png output, 84s
+
+- gegl-vips, 3x3 sharp, tiff files, 0.95s
+- gegl-vips, 3x3 sharp, png files, 11.7s
+
+- gegl-vips, gegl-like usharp, tif files, 2.48s
+- gegl-vips, gegl-like usharp, png files, 11.8s
+
+- gegl-vips, gegl-like usharp, float path, tif files, 3.3s
+- gegl-vips, gegl-like usharp, float path, png files, 12.5s
+
+- gegl-vips, gegl-like usharp, float path, 16-bit output, tif files, 4.0s
+- gegl-vips, gegl-like usharp, float path, 16-bit output, png files, 15.9s
+
+Conclusions: the most comparable cases are gegl-0.1.6, 84s and gegl-vips,
+gegl-like usharp, float path, 16-bit output, png files, 15.9s, ie. libvips
+gives about a 5x speedup.
+
+You can save about 10s by switching to tiff files.
+
+You can get a further 4x speedup by using an 8-bit int path.
+
+You should be able to save a further 1s with a better usharp (the gegl one,
+which gegl-vips copies exactly, is rather inefficient).
+
+How it works:
+
+- add this to every GeglNode:
+
+	VipsImage *vips_image;
+	guint64 vips_hash;
+
+- in every operation (I've only done load/save/crop/affine/usharp) change the
+  GeglOperation::process() member to be something like this (this is crop):
+
+  GeglNode *input;
+  guint64 hash;
+
+  // make sure input is ready
+  input = gegl_operation_get_source_node (operation, "input");
+  if (!input || !input->vips_image)
+    return;
+
+  // calculate a hash of the input args
+  hash = 0;
+  hash = GEGL_VIPS_HASH_POINTER (hash, input->vips_image);
+  hash = GEGL_VIPS_HASH_DOUBLE (hash, o->x);
+  hash = GEGL_VIPS_HASH_DOUBLE (hash, o->y);
+  hash = GEGL_VIPS_HASH_DOUBLE (hash, o->width);
+  hash = GEGL_VIPS_HASH_DOUBLE (hash, o->height);
+
+  // if args have changed, or this is the first time we've run
+  if (!node->vips_image || node->vips_hash != hash)
+    {
+      VipsImage *image;
+
+      // perform the equivalent vips operation
+      image = vips_image_new ("p");
+      if (im_extract_area (input->vips_image, image,
+			   o->x, o->y, o->width, o->height))
+	{
+	  gegl_vips_error ("crop");
+	  g_object_unref (image);
+	  return;
+	}
+
+      // install the new image on the node, update the hash
+      if (node->vips_image)
+        {
+	  g_object_unref (node->vips_image);
+	  node->vips_image = NULL;
+	}
+      node->vips_image = image;
+      node->vips_hash = hash;
+    }
+
+- change gegl_node_process() to simply walk the graph, bottom-up, calling all 
+  the prepare() members 
+
+... and that's about it, very simple.
+
+TODO:
+
+- add a display sink
+- try a couple more operations
+- maybe get hello-world.c working
+- vips needs area invalidation before we can support destructive operations
+

@@ -1,0 +1,4 @@
+SUBDIRS = \
+	buffer \
+	compositions \
+	simple
