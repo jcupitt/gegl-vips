@@ -107,8 +107,32 @@ gegl_save_prepare (GeglOperation * operation)
 
 	    /*
 
-	       float to 16-bit int version
+	       float to 16-bit int version, no LUT
        */
+      VipsImage *image;
+      VipsImage *t[7];
+
+      if (!(image = vips_image_new_from_file (o->path, "w")))
+	{
+	  gegl_vips_error ("save");
+	  return;
+	}
+
+      // convert from linear float back to 16-bit int
+      if (vips_image_new_array (VIPS_OBJECT(image), t, 7) ||
+	 im_lintra (log (255.0) / 65535.0, input->vips_image, 0.0, t[0]) ||
+	 im_exptra (t[0], t[1]) ||
+	 im_clip2fmt (t[1], image, VIPS_FORMAT_USHORT))
+	{
+	  gegl_vips_error ("save");
+	  g_object_unref (image);
+	  return;
+	}
+      g_object_unref (image);
+
+	    /*
+
+	       float to 16-bit int version
       VipsImage *image;
       VipsImage *t[7];
 
@@ -134,6 +158,7 @@ gegl_save_prepare (GeglOperation * operation)
 	  return;
 	}
       g_object_unref (image);
+       */
 
       node->vips_hash = hash;
 

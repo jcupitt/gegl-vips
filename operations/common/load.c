@@ -82,13 +82,26 @@ gegl_load_prepare (GeglOperation * operation)
 
       image = vips_image_new ("p");
 
-      // load as linear float
+      /*
+      // load as linear float with a LUT
       if (vips_image_new_array (VIPS_OBJECT(image), t, 4) ||
         !(t[3] = vips_image_new_from_file (o->path, "r")) ||
 	 im_identity (t[0], 1) ||
 	 im_logtra (t[0], t[1]) ||
 	 im_lintra (255.0 / log (255.0), t[1], 0.0, t[2]) ||
 	 im_maplut (t[3], image, t[2]))
+	{
+	  gegl_vips_error ("load");
+	  g_object_unref (image);
+	  return;
+	}
+		 */
+
+      // load as linear float, no LUT
+      if (vips_image_new_array (VIPS_OBJECT(image), t, 4) ||
+        !(t[0] = vips_image_new_from_file (o->path, "r")) ||
+	 im_logtra (t[0], t[1]) ||
+	 im_lintra (255.0 / log (255.0), t[1], 0.0, image))
 	{
 	  gegl_vips_error ("load");
 	  g_object_unref (image);

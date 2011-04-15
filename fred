@@ -1,66 +1,157 @@
 Making install in libs
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/libs'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/libs'
 Making install in rgbe
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/libs/rgbe'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/libs/rgbe'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/libs/rgbe'
+  CC     librgbe_la-rgbe.lo
+  CCLD   librgbe.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/libs/rgbe'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/libs/rgbe'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/libs/rgbe'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/libs'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/libs'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/libs/rgbe'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/libs/rgbe'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/libs'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/libs'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/libs'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/libs'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/libs'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/libs'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/libs'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/libs'
 Making install in gegl
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/gegl'
 Making install in buffer
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/buffer'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/buffer'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/buffer'
+  CC     gegl-tile-backend-tiledir.lo
+  CC     gegl-buffer.lo
+  CC     gegl-buffer-access.lo
+  CC     gegl-buffer-share.lo
+  CC     gegl-buffer-iterator.lo
+  CC     gegl-buffer-linear.lo
+  CC     gegl-buffer-save.lo
+  CC     gegl-buffer-load.lo
+  CC     gegl-cache.lo
+  CC     gegl-sampler.lo
+  CC     gegl-sampler-cubic.lo
+  CC     gegl-sampler-lanczos.lo
+  CC     gegl-sampler-linear.lo
+  CC     gegl-sampler-nearest.lo
+  CC     gegl-sampler-downsharp.lo
+  CC     gegl-sampler-downsize.lo
+  CC     gegl-sampler-downsmooth.lo
+  CC     gegl-sampler-upsharp.lo
+  CC     gegl-sampler-upsize.lo
+  CC     gegl-sampler-upsmooth.lo
+  CC     gegl-region-generic.lo
+  CC     gegl-tile.lo
+  CC     gegl-tile-source.lo
+  CC     gegl-tile-storage.lo
+  CC     gegl-tile-backend.lo
+  CC     gegl-tile-backend-file.lo
+  CC     gegl-tile-backend-ram.lo
+  CC     gegl-tile-handler.lo
+  CC     gegl-tile-handler-cache.lo
+  CC     gegl-tile-handler-chain.lo
+  CC     gegl-tile-handler-empty.lo
+  CC     gegl-tile-handler-log.lo
+  CC     gegl-tile-handler-zoom.lo
+  CC     gegl-id-pool.lo
+  CCLD   libbuffer.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/buffer'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/buffer'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/buffer'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/buffer'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/buffer'
 Making install in graph
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/graph'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/graph'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/graph'
+  CC     gegl-connection.lo
+  CC     gegl-node.lo
+  CC     gegl-pad.lo
+  CC     gegl-visitor.lo
+  CC     gegl-visitable.lo
+  CCLD   libgraph.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/graph'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/graph'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/graph'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/graph'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/graph'
 Making install in module
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/module'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/module'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/module'
+  CC     gegldatafiles.lo
+  CC     geglmodule.lo
+  CC     geglmoduledb.lo
+  CCLD   libmodule.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/module'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/module'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/module'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/module'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/module'
 Making install in operation
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/operation'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/operation'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/operation'
+  CC     gegl-extension-handler.lo
+  CC     gegl-operation.lo
+  CC     gegl-operation-area-filter.lo
+  CC     gegl-operation-composer.lo
+  CC     gegl-operation-composer3.lo
+  CC     gegl-operation-filter.lo
+  CC     gegl-operation-meta.lo
+  CC     gegl-operation-point-composer.lo
+  CC     gegl-operation-point-composer3.lo
+  CC     gegl-operation-point-filter.lo
+  CC     gegl-operation-point-render.lo
+  CC     gegl-operation-sink.lo
+  CC     gegl-operation-source.lo
+  CC     gegl-operation-temporal.lo
+  CC     gegl-operation-processors.lo
+  CC     gegl-operation-context.lo
+  CC     gegl-operations.lo
+  CCLD   liboperation.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/operation'
 make[3]: Nothing to be done for `install-exec-am'.
 test -z "/home/john/vips/include/gegl-0.1/operation" || /bin/mkdir -p "/home/john/vips/include/gegl-0.1/operation"
  /usr/bin/install -c -m 644 gegl-operation.h gegl-operation-area-filter.h gegl-operation-composer.h gegl-operation-composer3.h gegl-operation-filter.h gegl-operation-meta.h gegl-operation-point-composer.h gegl-operation-point-composer3.h gegl-operation-point-filter.h gegl-operation-point-render.h gegl-operation-sink.h gegl-operation-source.h gegl-operation-temporal.h '/home/john/vips/include/gegl-0.1/operation'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/operation'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/operation'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/operation'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/operation'
 Making install in process
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/process'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/process'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/process'
+  CC     gegl-need-visitor.lo
+  CC     gegl-debug-rect-visitor.lo
+  CC     gegl-eval-mgr.lo
+  CC     gegl-eval-visitor.lo
+  CC     gegl-finish-visitor.lo
+  CC     gegl-have-visitor.lo
+  CC     gegl-prepare-visitor.lo
+  CC     gegl-processor.lo
+  CCLD   libprocess.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/process'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/process'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/process'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/process'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/process'
 Making install in property-types
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/property-types'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl/property-types'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl/property-types'
+  CC     gegl-color.lo
+  CC     gegl-curve.lo
+  CC     gegl-path.lo
+  CC     gegl-paramspecs.lo
+  CCLD   libpropertytypes.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl/property-types'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/property-types'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl/property-types'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl/property-types'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl/property-types'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/gegl'
+  CC     gegl-c.lo
+  CC     gegl-config.lo
+  CC     gegl-cpuaccel.lo
+  CC     gegl-dot.lo
+  CC     gegl-dot-visitor.lo
+  CC     gegl-init.lo
+  CC     gegl-instrument.lo
+  CC     gegl-utils.lo
+  CC     gegl-lookup.lo
+  CC     gegl-matrix.lo
+  CC     gegl-xml.lo
+  CCLD   libgegl-0.1.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/gegl'
 test -z "/home/john/vips/lib" || /bin/mkdir -p "/home/john/vips/lib"
  /bin/bash ../libtool   --mode=install /usr/bin/install -c   libgegl-0.1.la '/home/john/vips/lib'
 libtool: install: /usr/bin/install -c .libs/libgegl-0.1.so.0.105.1 /home/john/vips/lib/libgegl-0.1.so.0.105.1
@@ -88,14 +179,23 @@ more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
 test -z "/home/john/vips/include/gegl-0.1" || /bin/mkdir -p "/home/john/vips/include/gegl-0.1"
  /usr/bin/install -c -m 644 gegl.h gegl-types.h gegl-utils.h gegl-matrix.h gegl-chant.h gegl-lookup.h gegl-plugin.h gegl-version.h buffer/gegl-buffer.h buffer/gegl-buffer-iterator.h buffer/gegl-buffer-backend.h buffer/gegl-tile.h buffer/gegl-tile-backend.h buffer/gegl-tile-source.h property-types/gegl-paramspecs.h property-types/gegl-color.h property-types/gegl-path.h property-types/gegl-curve.h '/home/john/vips/include/gegl-0.1'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/gegl'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/gegl'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/gegl'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/gegl'
 Making install in operations
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/operations'
 Making install in affine
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/affine'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/affine'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations/affine'
+  CC     affine.lo
+  CC     module.lo
+  CC     reflect.lo
+  CC     rotate.lo
+  CC     scale.lo
+  CC     shear.lo
+  CC     transform.lo
+  CC     translate.lo
+  CCLD   affine.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/affine'
 make[3]: Nothing to be done for `install-exec-am'.
 test -z "/home/john/vips/lib/gegl-0.1" || /bin/mkdir -p "/home/john/vips/lib/gegl-0.1"
  /bin/bash ../../libtool   --mode=install /usr/bin/install -c   affine.la '/home/john/vips/lib/gegl-0.1'
@@ -120,11 +220,19 @@ flag during linking and do at least one of the following:
 See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/affine'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/affine'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/affine'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations/affine'
 Making install in core
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/core'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/core'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations/core'
+  CC      clone.c
+  CCLD    clone.la
+  CC      convert-format.c
+  CCLD    convert-format.la
+  CC      crop.c
+  CCLD    crop.la
+  CC      nop.c
+  CCLD    nop.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/core'
 /usr/bin/install -c -d /home/john/vips/lib/gegl-0.1
 for i in clone.la convert-format.la crop.la nop.la; do \
 	  /bin/bash ../../libtool --mode=install /usr/bin/install -c $i /home/john/vips/lib/gegl-0.1 ; \
@@ -214,21 +322,141 @@ See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/core'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/core'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/core'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations/core'
 Making install in common
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations/common'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
 Making install in perlin
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/common/perlin'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/operations/common/perlin'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
 make[4]: Nothing to be done for `install-exec-am'.
 make[4]: Nothing to be done for `install-data-am'.
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common/perlin'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/operations/common/perlin'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/common/perlin'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/common'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC      add-noise.c
+  CCLD    add-noise.la
+  CC      bilateral-filter.c
+  CCLD    bilateral-filter.la
+  CC      box-blur.c
+  CCLD    box-blur.la
+  CC      brightness-contrast.c
+  CCLD    brightness-contrast.la
+  CC      buffer-sink.c
+  CCLD    buffer-sink.la
+  CC      buffer-source.c
+  CCLD    buffer-source.la
+  CC      c2g.c
+  CCLD    c2g.la
+  CC      checkerboard.c
+  CCLD    checkerboard.la
+  CC      color.c
+  CCLD    color.la
+  CC      color-temperature.c
+  CCLD    color-temperature.la
+  CC      contrast-curve.c
+  CCLD    contrast-curve.la
+  CC      difference-of-gaussians.c
+  CCLD    difference-of-gaussians.la
+  CC      dropshadow.c
+  CCLD    dropshadow.la
+  CC      exp-combine.c
+  CCLD    exp-combine.la
+  CC      fattal02.c
+  CCLD    fattal02.la
+  CC      fractal-explorer.c
+  CCLD    fractal-explorer.la
+  CC      gaussian-blur.c
+  CCLD    gaussian-blur.la
+  CC      gegl-buffer-load-op.c
+  CCLD    gegl-buffer-load-op.la
+  CC      gegl-buffer-save-op.c
+  CCLD    gegl-buffer-save-op.la
+  CC      grey.c
+  CCLD    grey.la
+  CC      grid.c
+  CCLD    grid.la
+  CC      introspect.c
+  CCLD    introspect.la
+  CC      invert.c
+  CCLD    invert.la
+  CC      layer.c
+  CCLD    layer.la
+  CC      levels.c
+  CCLD    levels.la
+  CC      load.c
+  CCLD    load.la
+  CC      magick-load.c
+  CCLD    magick-load.la
+  CC      mantiuk06.c
+  CCLD    mantiuk06.la
+  CC      map_absolute.c
+  CCLD    map_absolute.la
+  CC      mblur.c
+  CCLD    mblur.la
+  CC      mirrors.c
+  CCLD    mirrors.la
+  CC      mono-mixer.c
+  CCLD    mono-mixer.la
+  CC      motion-blur.c
+  CCLD    motion-blur.la
+  CC      noise.c
+  CCLD    noise.la
+  CC      opacity.c
+  CCLD    opacity.la
+  CC      open-buffer.c
+  CCLD    open-buffer.la
+  CC      over.c
+  CCLD    over.la
+  CC      pixelise.c
+  CCLD    pixelise.la
+  CC      raw-load.c
+  CCLD    raw-load.la
+  CC      rectangle.c
+  CCLD    rectangle.la
+  CC      reinhard05.c
+  CCLD    reinhard05.la
+  CC      remap.c
+  CCLD    remap.la
   CC      save.c
   CCLD    save.la
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
+  CC      snn-mean.c
+  CCLD    snn-mean.la
+  CC      stress.c
+  CCLD    stress.la
+  CC      stretch-contrast.c
+  CCLD    stretch-contrast.la
+  CC      svg-huerotate.c
+  CCLD    svg-huerotate.la
+  CC      svg-luminancetoalpha.c
+  CCLD    svg-luminancetoalpha.la
+  CC      svg-matrix.c
+  CCLD    svg-matrix.la
+  CC      svg-saturate.c
+  CCLD    svg-saturate.la
+  CC      threshold.c
+  CCLD    threshold.la
+  CC      unsharp-mask.c
+  CCLD    unsharp-mask.la
+  CC      value-invert.c
+  CCLD    value-invert.la
+  CC      weighted-blend.c
+  CCLD    weighted-blend.la
+  CC      whitebalance.c
+  CCLD    whitebalance.la
+  CC      write-buffer.c
+  CCLD    write-buffer.la
+make[4]: Entering directory `/home/john/GIT/gegl-vips/operations/common'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
 /usr/bin/install -c -d /home/john/vips/lib/gegl-0.1
 for i in add-noise.la bilateral-filter.la box-blur.la brightness-contrast.la buffer-sink.la buffer-source.la c2g.la checkerboard.la color.la color-temperature.la contrast-curve.la difference-of-gaussians.la dropshadow.la exp-combine.la fattal02.la fractal-explorer.la gaussian-blur.la gegl-buffer-load-op.la gegl-buffer-save-op.la grey.la grid.la introspect.la invert.la layer.la levels.la load.la magick-load.la mantiuk06.la map_absolute.la mblur.la mirrors.la mono-mixer.la motion-blur.la noise.la opacity.la open-buffer.la over.la pixelise.la raw-load.la rectangle.la reinhard05.la remap.la save.la snn-mean.la stress.la stretch-contrast.la svg-huerotate.la svg-luminancetoalpha.la svg-matrix.la svg-saturate.la threshold.la unsharp-mask.la value-invert.la weighted-blend.la whitebalance.la write-buffer.la; do \
 	  /bin/bash ../../libtool --mode=install /usr/bin/install -c $i /home/john/vips/lib/gegl-0.1 ; \
@@ -1410,12 +1638,74 @@ See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
 make[4]: Nothing to be done for `install-data-am'.
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/common'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/operations/common'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/common'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations/common'
 Making install in generated
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/generated'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/generated'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations/generated'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC      add.c
+  CCLD    add.la
+  CC      clear.c
+  CCLD    clear.la
+  CC      color-burn.c
+  CCLD    color-burn.la
+  CC      color-dodge.c
+  CCLD    color-dodge.la
+  CC      darken.c
+  CCLD    darken.la
+  CC      difference.c
+  CCLD    difference.la
+  CC      divide.c
+  CCLD    divide.la
+  CC      dst-atop.c
+  CCLD    dst-atop.la
+  CC      dst.c
+  CCLD    dst.la
+  CC      dst-in.c
+  CCLD    dst-in.la
+  CC      dst-out.c
+  CCLD    dst-out.la
+  CC      dst-over.c
+  CCLD    dst-over.la
+  CC      exclusion.c
+  CCLD    exclusion.la
+  CC      gamma.c
+  CCLD    gamma.la
+  CC      hard-light.c
+  CCLD    hard-light.la
+  CC      lighten.c
+  CCLD    lighten.la
+  CC      multiply.c
+  CCLD    multiply.la
+  CC      overlay.c
+  CCLD    overlay.la
+  CC      plus.c
+  CCLD    plus.la
+  CC      screen.c
+  CCLD    screen.la
+  CC      soft-light.c
+  CCLD    soft-light.la
+  CC      src-atop.c
+  CCLD    src-atop.la
+  CC      src.c
+  CCLD    src.la
+  CC      src-in.c
+  CCLD    src-in.la
+  CC      src-out.c
+  CCLD    src-out.la
+  CC      src-over.c
+  CCLD    src-over.la
+  CC      subtract.c
+  CCLD    subtract.la
+  CC      svg-multiply.c
+  CCLD    svg-multiply.la
+  CC      xor.c
+  CCLD    xor.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/generated'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 /usr/bin/install -c -d /home/john/vips/lib/gegl-0.1
 for i in add.la clear.la color-burn.la color-dodge.la darken.la difference.la divide.la dst-atop.la dst.la dst-in.la dst-out.la dst-over.la exclusion.la gamma.la hard-light.la lighten.la multiply.la overlay.la plus.la screen.la soft-light.la src-atop.la src.la src-in.la src-out.la src-over.la subtract.la svg-multiply.la xor.la; do \
 	  /bin/bash ../../libtool --mode=install /usr/bin/install -c $i /home/john/vips/lib/gegl-0.1 ; \
@@ -2030,11 +2320,53 @@ See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/generated'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/generated'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/generated'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations/generated'
 Making install in external
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/external'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations/external'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations/external'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC     text_la-text.lo
+  CCLD   text.la
+  CC     path_la-path.lo
+  CCLD   path.la
+  CC     vector_fill_la-vector-fill.lo
+  CCLD   vector-fill.la
+  CC     vector_stroke_la-vector-stroke.lo
+  CCLD   vector-stroke.la
+  CC     png_load_la-png-load.lo
+  CCLD   png-load.la
+  CC     png_save_la-png-save.lo
+  CCLD   png-save.la
+  CC     jpg-load.lo
+  CCLD   jpg-load.la
+  CC     svg_load_la-svg-load.lo
+  CCLD   svg-load.la
+  CC     pixbuf_la-pixbuf.lo
+  CCLD   pixbuf.la
+  CC     save_pixbuf_la-save-pixbuf.lo
+  CCLD   save-pixbuf.la
+  CXX    exr_load_la-exr-load.lo
+  CXXLD  exr-load.la
+  CC     display_la-display.lo
+  CCLD   display.la
+  CC     v4l.lo
+  CCLD   v4l.la
+  CC     jp2_load_la-jp2-load.lo
+  CCLD   jp2-load.la
+  CC     ff_load_la-ff-load.lo
+  CCLD   ff-load.la
+  CC     ppm-load.lo
+  CCLD   ppm-load.la
+  CC     ppm-save.lo
+  CCLD   ppm-save.la
+  CC     rgbe_load_la-rgbe-load.lo
+  CCLD   rgbe-load.la
+  CC     rgbe_save_la-rgbe-save.lo
+  CCLD   rgbe-save.la
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations/external'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 make[3]: Nothing to be done for `install-exec-am'.
 test -z "/home/john/vips/lib/gegl-0.1" || /bin/mkdir -p "/home/john/vips/lib/gegl-0.1"
  /bin/bash ../../libtool   --mode=install /usr/bin/install -c   text.la path.la vector-fill.la vector-stroke.la png-load.la png-save.la jpg-load.la svg-load.la pixbuf.la save-pixbuf.la exr-load.la display.la v4l.la jp2-load.la ff-load.la ppm-load.la ppm-save.la rgbe-load.la rgbe-save.la '/home/john/vips/lib/gegl-0.1'
@@ -2095,109 +2427,283 @@ flag during linking and do at least one of the following:
 See any operating system documentation about shared libraries for
 more information, such as the ld(1) and ld.so(8) manual pages.
 ----------------------------------------------------------------------
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/external'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations/external'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/operations'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations/external'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations/external'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/operations'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/operations'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/operations'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/operations'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/operations'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/operations'
 Making install in bin
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/bin'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/bin'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/bin'
+  CC     gegl.o
+  CC     gegl-options.o
+  CC     gegl-path-smooth.o
+  CCLD   gegl
+make[2]: Entering directory `/home/john/GIT/gegl-vips/bin'
 test -z "/home/john/vips/bin" || /bin/mkdir -p "/home/john/vips/bin"
   /bin/bash ../libtool   --mode=install /usr/bin/install -c gegl '/home/john/vips/bin'
 libtool: install: /usr/bin/install -c .libs/gegl /home/john/vips/bin/gegl
 make[2]: Nothing to be done for `install-data-am'.
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/bin'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/bin'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/bin'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/bin'
 Making install in tools
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tools'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tools'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/tools'
+make[2]: Entering directory `/home/john/GIT/gegl-vips'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC     introspect.o
+  CCLD   introspect
+  CC     operation_reference.o
+  CCLD   operation_reference
+  CC     img_cmp.o
+  CCLD   img_cmp
+make[2]: Entering directory `/home/john/GIT/gegl-vips/tools'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
 make[2]: Nothing to be done for `install-exec-am'.
 make[2]: Nothing to be done for `install-data-am'.
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tools'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tools'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/tools'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/tools'
 Making install in examples
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/examples'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/examples'
+make[2]: Entering directory `/home/john/GIT/gegl-vips'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips'
 Making install in data
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/examples/data'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/examples/data'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/examples/data'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/examples/data'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/examples/data'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/examples/data'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/examples'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/examples'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/examples/data'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/examples/data'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/examples'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC      2geglbuffer.c
+  CCLD    2geglbuffer
+  CC      csugar.c
+  CCLD    csugar
+  CC      float-lookup.c
+  CCLD    float-lookup
+  CC      geglbuffer-add-image.c
+  CCLD    geglbuffer-add-image
+  CC      geglbuffer-clock.c
+  CCLD    geglbuffer-clock
+  CC      gegl-convert.c
+  CCLD    gegl-convert
+  CC      gegl-paint.c
+  CCLD    gegl-paint
+  CC      gegl-slicer.c
+  CCLD    gegl-slicer
+  CC      hello-world.c
+  CCLD    hello-world
+  CC      hello-world-video.c
+  CCLD    hello-world-video
+  CC      sharpen.c
+  CCLD    sharpen
+make[3]: Entering directory `/home/john/GIT/gegl-vips/examples'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/examples'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/examples'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/examples'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/examples'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/examples'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/examples'
 Making install in tests
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests'
+make[1]: Entering directory `/home/john/GIT/gegl-vips/tests'
+make[2]: Entering directory `/home/john/GIT/gegl-vips'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips'
 Making install in buffer
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+Generating buffer-tests.inc
 make  install-recursive
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 Making install in reference
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/reference'
-make[5]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/reference'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer/reference'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
+make[5]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer/reference'
+make[6]: Entering directory `/home/john/GIT/gegl-vips'
+make[6]: Leaving directory `/home/john/GIT/gegl-vips'
 make[5]: Nothing to be done for `install-exec-am'.
 make[5]: Nothing to be done for `install-data-am'.
-make[5]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/reference'
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/reference'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer/reference'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer/reference'
 Making install in tests
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/tests'
-make[5]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/tests'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer/tests'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
+make[5]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer/tests'
+make[6]: Entering directory `/home/john/GIT/gegl-vips'
+make[6]: Leaving directory `/home/john/GIT/gegl-vips'
 make[5]: Nothing to be done for `install-exec-am'.
 make[5]: Nothing to be done for `install-data-am'.
-make[5]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/tests'
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer/tests'
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
-make[5]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer/tests'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer/tests'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
+make[5]: Entering directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[6]: Entering directory `/home/john/GIT/gegl-vips'
+make[6]: Leaving directory `/home/john/GIT/gegl-vips'
 make[5]: Nothing to be done for `install-exec-am'.
 make[5]: Nothing to be done for `install-data-am'.
-make[5]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/buffer'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/tests/buffer'
 Making install in compositions
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/tests/compositions'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
 Making install in data
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions/data'
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions/data'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/tests/compositions/data'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/tests/compositions/data'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
 make[4]: Nothing to be done for `install-exec-am'.
 make[4]: Nothing to be done for `install-data-am'.
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions/data'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions/data'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
-make[4]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/tests/compositions/data'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/tests/compositions/data'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/tests/compositions'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/tests/compositions'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
 make[4]: Nothing to be done for `install-exec-am'.
 make[4]: Nothing to be done for `install-data-am'.
-make[4]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/compositions'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/tests/compositions'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/tests/compositions'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/tests/compositions'
 Making install in simple
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/simple'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests/simple'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/tests/simple'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+  CC     test-change-processor-rect.o
+  CCLD   test-change-processor-rect
+  CC     test-color-op.o
+  CCLD   test-color-op
+  CC     test-gegl-rectangle.o
+  CCLD   test-gegl-rectangle
+  CC     test-misc.o
+  CCLD   test-misc
+  CC     test-path.o
+  CCLD   test-path
+  CC     test-proxynop-processing.o
+  CCLD   test-proxynop-processing
+make[3]: Entering directory `/home/john/GIT/gegl-vips/tests/simple'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/simple'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests/simple'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests'
-make[3]: Entering directory `/home/john/GIT/gegl-vips-0.1.6/tests'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/tests/simple'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/tests/simple'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/tests'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/tests'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
 make[3]: Nothing to be done for `install-exec-am'.
 make[3]: Nothing to be done for `install-data-am'.
-make[3]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6/tests'
-make[1]: Entering directory `/home/john/GIT/gegl-vips-0.1.6'
-make[2]: Entering directory `/home/john/GIT/gegl-vips-0.1.6'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/tests'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/tests'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/tests'
+Making install in docs
+make[1]: Entering directory `/home/john/GIT/gegl-vips/docs'
+make[2]: Entering directory `/home/john/GIT/gegl-vips'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips'
+Making install in gallery
+make[2]: Entering directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+Making install in data
+make[3]: Entering directory `/home/john/GIT/gegl-vips/docs/gallery/data'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Entering directory `/home/john/GIT/gegl-vips/docs/gallery/data'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/docs/gallery/data'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/docs/gallery/data'
+make[3]: Entering directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+--[Updating sample compositions]--
+./clones.xml
+./OpenRaster-00.xml
+./OpenRaster-01.xml
+./OpenRaster-04.xml
+make[4]: Entering directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[5]: Entering directory `/home/john/GIT/gegl-vips'
+make[5]: Leaving directory `/home/john/GIT/gegl-vips'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/docs/gallery'
+make[2]: Entering directory `/home/john/GIT/gegl-vips/docs'
+make[3]: Entering directory `/home/john/GIT/gegl-vips'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips'
+GEGL_SWAP=RAM GEGL_PATH=../operations \
+	../tools/operation_reference --ops-html > operations.html
+../tools/create-reference.rb 	\
+	    ../gegl/gegl.h			\
+	    ../gegl/gegl-version.h		\
+	    ../gegl/buffer/gegl-buffer.h	\
+            ../gegl/gegl-utils.h \
+            ../gegl/property-types/gegl-color.h\
+            ../gegl/gegl-matrix.h \
+            ../gegl/property-types/gegl-path.h\
+            ../gegl/property-types/gegl-curve.h\
+	    api.html
+../gegl/gegl.h
+../gegl/gegl-version.h
+../gegl/buffer/gegl-buffer.h
+73:function name mismatch !=gegl_buffer_new_for_backend
+../gegl/gegl-utils.h
+../gegl/property-types/gegl-color.h
+../gegl/gegl-matrix.h
+../gegl/property-types/gegl-path.h
+../gegl/property-types/gegl-curve.h
+echo
+
+GEGL_SWAP=RAM GEGL_PATH=../operations \
+	../tools/introspect > class-hierarchy.html
+mkdir -p images
+../tools/gobj2dot.rb .. | /usr/bin/dot -Tpng > images/inheritance.png
+make[3]: Entering directory `/home/john/GIT/gegl-vips/docs'
+make[4]: Entering directory `/home/john/GIT/gegl-vips'
+make[4]: Leaving directory `/home/john/GIT/gegl-vips'
+make[3]: Nothing to be done for `install-exec-am'.
+test -z "/home/john/vips/share/gtk-doc/html/gegl" || /bin/mkdir -p "/home/john/vips/share/gtk-doc/html/gegl"
+ /usr/bin/install -c -m 644 operations.html gegl.css gegl.devhelp api.html '/home/john/vips/share/gtk-doc/html/gegl'
+make[3]: Leaving directory `/home/john/GIT/gegl-vips/docs'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips/docs'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips/docs'
+make[1]: Entering directory `/home/john/GIT/gegl-vips'
+cd . && /bin/bash ./config.status gegl.pc
+config.status: creating gegl.pc
+cd . && /bin/bash ./config.status config.h
+config.status: creating config.h
+config.status: config.h is unchanged
+make[2]: Entering directory `/home/john/GIT/gegl-vips'
 make[2]: Nothing to be done for `install-exec-am'.
 test -z "/home/john/vips/lib/pkgconfig" || /bin/mkdir -p "/home/john/vips/lib/pkgconfig"
  /usr/bin/install -c -m 644 gegl.pc '/home/john/vips/lib/pkgconfig'
-make[2]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6'
-make[1]: Leaving directory `/home/john/GIT/gegl-vips-0.1.6'
+make[2]: Leaving directory `/home/john/GIT/gegl-vips'
+make[1]: Leaving directory `/home/john/GIT/gegl-vips'
