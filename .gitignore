@@ -2,6 +2,7 @@ fred
 Makefile
 Makefile.in
 .deps
+.*.swp
 .libs
 *.lo
 *.la

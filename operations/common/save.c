@@ -60,6 +60,7 @@ gegl_save_prepare (GeglOperation * operation)
 
 	       just-save version
 
+      	*/
       VipsImage *image;
 
       if (!(image = vips_image_new_from_file (o->path, "w")))
@@ -74,7 +75,6 @@ gegl_save_prepare (GeglOperation * operation)
 	  return;
 	}
       g_object_unref (image);
-      	*/
 
 	    /*
 
@@ -108,7 +108,6 @@ gegl_save_prepare (GeglOperation * operation)
 	    /*
 
 	       float to 16-bit int version, no LUT
-       */
       VipsImage *image;
       VipsImage *t[7];
 
@@ -129,6 +128,7 @@ gegl_save_prepare (GeglOperation * operation)
 	  return;
 	}
       g_object_unref (image);
+       */
 
 	    /*
 

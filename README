@@ -103,30 +103,55 @@ $ time ./a.out wtc_small.tif wtc2.tif
 
 On my laptop I get the following run times:
 
-- gegl-0.1.6, default settings, png output, 84s
+   timing:
 
-- gegl-vips, 3x3 sharp, tiff files, 0.95s
-- gegl-vips, 3x3 sharp, png files, 11.7s
+- gegl-0.1.6, default settings, png output, 96s r, 44s u
 
-- gegl-vips, gegl-like usharp, tif files, 2.48s
-- gegl-vips, gegl-like usharp, png files, 11.8s
+gegl-vips, identical processing
 
-- gegl-vips, gegl-like usharp, float path, tif files, 3.3s
-- gegl-vips, gegl-like usharp, float path, png files, 12.5s
+- gegl-vips, tif files, 15s r, 23s u
+- gegl-vips, png files, 27s r, 38s u
 
-- gegl-vips, gegl-like usharp, float path, 16-bit output, tif files, 4.0s
-- gegl-vips, gegl-like usharp, float path, 16-bit output, png files, 15.9s
+no alpha
 
-Conclusions: the most comparable cases are gegl-0.1.6, 84s and gegl-vips,
-gegl-like usharp, float path, 16-bit output, png files, 15.9s, ie. libvips
-gives about a 5x speedup.
+- gegl-vips, tif files, 12s r, 18s u
+- gegl-vips, png files, 20s r, 20s u
 
-You can save about 10s by switching to tiff files.
+use LUTs for int->float and back
 
-You can get a further 4x speedup by using an 8-bit int path.
+- gegl-vips, tif files, 3.9s r, 5.3s u
+- gegl-vips, png files, 14.8s r, 17.7s u
 
-You should be able to save a further 1s with a better usharp (the gegl one,
-which gegl-vips copies exactly, is rather inefficient).
+8-bit output
+
+- gegl-vips, tif files, 3.3s r, 5.1s u
+- gegl-vips, png files, 7.9s r, 10.5s u
+
+8-bit path 
+
+- gegl-vips, tif files, 2.4s r, 3.4s u
+- gegl-vips, png files, 7.7s r, 8.7s u
+
+ushaprp redone as a single conv
+
+- gegl-vips, tif files, 1.2s r, 1.5s u
+- gegl-vips, png files, 3.4s r, 4s u
+
+Conclusions: in the most comparable case, gegl-vips needs about 10s less CPU
+but finished much earlier, perhaps due to the slow laptop harddrive and
+gegl's tile cache.
+
+Fast, uncompressed formats like tiff can save 10s.
+
+The alpha costs another 3s.
+
+Use LUTs for linearization, save another 8s.
+
+8-bit output, save 0.5s.
+
+8-bit path, save 1s.
+
+Faster convolution, save 1s.
 
 How it works:
 
