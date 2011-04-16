@@ -78,7 +78,7 @@ gegl_load_prepare (GeglOperation * operation)
   if (!node->vips_image || node->vips_hash != hash)
     {
       VipsImage *image;
-      VipsImage *t[4];
+      VipsImage *t[8];
 
       image = vips_image_new ("p");
 
@@ -97,11 +97,31 @@ gegl_load_prepare (GeglOperation * operation)
 	}
 		 */
 
+      /*
       // load as linear float, no LUT
       if (vips_image_new_array (VIPS_OBJECT(image), t, 4) ||
         !(t[0] = vips_image_new_from_file (o->path, "r")) ||
-	 im_logtra (t[0], t[1]) ||
-	 im_lintra (255.0 / log (255.0), t[1], 0.0, image))
+	 im_lintra (1.0 / 255.0, t[0], 0.0, t[1]) ||
+	 im_logtra (t[1], image))
+	{
+	  gegl_vips_error ("load");
+	  g_object_unref (image);
+	  return;
+	}
+	 */
+
+      /*
+	*/
+      // load as linear float, no LUT, add an alpha channel
+      if (vips_image_new_array (VIPS_OBJECT(image), t, 8) ||
+        !(t[0] = vips_image_new_from_file (o->path, "r")) ||
+	 im_black (t[2], 1, 1, 1) ||
+	 im_lintra (1, t[2], 255.0, t[3]) ||
+	 im_clip2fmt (t[3], t[4], VIPS_FORMAT_UCHAR) ||
+	 im_embed (t[4], t[5], 1, 0, 0, t[0]->Xsize, t[0]->Ysize) ||
+	 im_bandjoin (t[0], t[5], t[6]) ||
+	 im_lintra (1.0 / 255.0, t[6], 0.0, t[7]) ||
+	 im_logtra (t[7], image))
 	{
 	  gegl_vips_error ("load");
 	  g_object_unref (image);

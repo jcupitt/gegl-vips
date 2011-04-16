@@ -120,8 +120,8 @@ gegl_save_prepare (GeglOperation * operation)
 
       // convert from linear float back to 16-bit int
       if (vips_image_new_array (VIPS_OBJECT(image), t, 7) ||
-	 im_lintra (log (255.0) / 65535.0, input->vips_image, 0.0, t[0]) ||
-	 im_exptra (t[0], t[1]) ||
+	 im_exptra (input->vips_image, t[0]) ||
+	 im_lintra (65535.0, t[0], 0.0, t[1]) ||
 	 im_clip2fmt (t[1], image, VIPS_FORMAT_USHORT))
 	{
 	  gegl_vips_error ("save");
