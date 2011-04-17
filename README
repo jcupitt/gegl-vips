@@ -1,4 +1,5 @@
 gegl-vips
+=========
 
 This is a quick proof-of-concept hack of gegl-0.1.6 to use libvips as the
 backend. 
@@ -6,7 +7,8 @@ backend.
 You need to have the development version of libvips installed (7.25), plus
 babl-0.1.4 or later. Then configure ; make ; make install as usual.
 
-This is the test program we support:
+Test program 
+============
 
 ------
 #include <stdio.h>
@@ -85,9 +87,13 @@ main (int argc, char **argv)
 ---
 
 ie. load, crop 100 px off the edges (you need to give it a 5k x 5k RGB image),
-bilinear 10% shrink, sharpen, save
+bilinear 10% shrink, sharpen, save. See:
 
-compile with:
+	http://www.vips.ecs.soton.ac.uk/index.php?title=Speed_and_Memory_Use
+
+for results with other libraries.
+
+Compile with:
 
    gcc -g -Wall gegl.c `pkg-config gegl vips-7.25 --cflags --libs`
 
@@ -101,59 +107,74 @@ $ time ./a.out wtc_small.tif wtc2.tif
 
 (gegl-vips allows most image file formats)
 
+Results
+=======
+
 On my laptop I get the following run times:
 
-   timing:
+	- gegl-0.1.6, default settings, png output, 96s r, 44s u
 
-- gegl-0.1.6, default settings, png output, 96s r, 44s u
+I tried experimenting with various combinations of:
+
+	export GEGL_THREADS=2
+	export GEGL_SWAP=RAM
+	export GEGL_CACHE_SIZE=10
+
+but I couldn't make it faster, I probably missed something.
 
 gegl-vips, identical processing
 
-- gegl-vips, tif files, 15s r, 23s u
-- gegl-vips, png files, 27s r, 38s u
+	- gegl-vips, tif files, 15s r, 23s u
+	- gegl-vips, png files, 27s r, 38s u
 
 no alpha
 
-- gegl-vips, tif files, 12s r, 18s u
-- gegl-vips, png files, 20s r, 20s u
+	- gegl-vips, tif files, 12s r, 18s u
+	- gegl-vips, png files, 20s r, 20s u
 
 use LUTs for int->float and back
 
-- gegl-vips, tif files, 3.9s r, 5.3s u
-- gegl-vips, png files, 14.8s r, 17.7s u
+	- gegl-vips, tif files, 3.9s r, 5.3s u
+	- gegl-vips, png files, 14.8s r, 17.7s u
+
+usharp redone as a single conv
+
+	- gegl-vips, tif files, 2.9s r, 4.2s u
+	- gegl-vips, png files, 12.6s r, 15.8s u
 
 8-bit output
 
-- gegl-vips, tif files, 3.3s r, 5.1s u
-- gegl-vips, png files, 7.9s r, 10.5s u
+	- gegl-vips, tif files, 2.3s r, 4.0s u
+	- gegl-vips, png files, 6.0s r, 8.4s u
 
 8-bit path 
 
-- gegl-vips, tif files, 2.4s r, 3.4s u
-- gegl-vips, png files, 7.7s r, 8.7s u
+	- gegl-vips, tif files, 1.0s r, 1.5s u
+	- gegl-vips, png files, 3.2s r, 4.0s u
 
-ushaprp redone as a single conv
+Conclusions
+===========
 
-- gegl-vips, tif files, 1.2s r, 1.5s u
-- gegl-vips, png files, 3.4s r, 4s u
+In the most comparable case, gegl-vips needs about 10s less CPU
+but finished 70s earlier, perhaps due to my slow laptop harddrive and
+gegl's tile cache. libvips has a nice threading system and double-buffered
+write-behind, which help too.
 
-Conclusions: in the most comparable case, gegl-vips needs about 10s less CPU
-but finished much earlier, perhaps due to the slow laptop harddrive and
-gegl's tile cache.
+Using a relatively fast, uncompressed file format (tif) saves 15s.
 
-Fast, uncompressed formats like tiff can save 10s.
+Dropping the alpha channel (not needed in this case) saves 5s.
 
-The alpha costs another 3s.
-
-Use LUTs for linearization, save another 8s.
-
-8-bit output, save 0.5s.
-
-8-bit path, save 1s.
+Use LUTs for linearization, save 12s.
 
 Faster convolution, save 1s.
 
-How it works:
+8-bit output (we don't really need 16 bit in this case) gives a small saving
+for tif, but a large saving for png.
+
+A complete 8-bit path, save 3s.
+
+How it works
+============
 
 - add this to every GeglNode:
 

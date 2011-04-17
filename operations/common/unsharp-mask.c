@@ -93,41 +93,64 @@ gegl_unsharp_prepare (GeglOperation * operation)
          VipsImage *image;
          INTMASK *mask;
 
-         mask = im_create_imaskv ("untitled", 3, 3, 
-		 -1, -1, -1, -1, 16, -1, -1, -1, -1);
+         image = vips_image_new ("p");
+         mask = im_local_dmask( image, 
+	 	im_create_imaskv ("untitled", 3, 3, 
+		 -1, -1, -1, -1, 16, -1, -1, -1, -1));
          mask->scale = 8;
 
-         image = vips_image_new ("p");
          if (im_conv (input->vips_image, image, mask))
            {
 		 gegl_vips_error ("unsharp");
 		 g_object_unref (image);
-		 im_free_imask (mask);
 		 return;
           }
+
         node->vips_image = image;
         node->vips_hash = hash;
 	 */
 
 	    /*
-	 */
 	    // 7x1 sep conv, what the gegl usharp is equivalent to
+	    // int version
+	 */
          VipsImage *image;
          INTMASK *mask;
 
-         mask = im_gauss_imask_sep ("untitled", o->std_dev, 0.1);
+         image = vips_image_new ("p");
+         mask = im_local_imask( image, 
+	 	im_gauss_imask_sep ("untitled", o->std_dev, 0.1));
          mask->scale = 8;
 
-         image = vips_image_new ("p");
          if (im_convsep (input->vips_image, image, mask))
            {
 		 gegl_vips_error ("unsharp");
 		 g_object_unref (image);
-		 im_free_imask (mask);
 		 return;
           }
+
         node->vips_image = image;
         node->vips_hash = hash;
+
+	    /*
+	    // 7x1 sep conv, what the gegl usharp is equivalent to
+	    // float version
+         VipsImage *image;
+         DOUBLEMASK *mask;
+
+         image = vips_image_new ("p");
+         mask = im_local_dmask( image, 
+			 im_gauss_dmask_sep ("untitled", o->std_dev, 0.1));
+         if (im_convsepf (input->vips_image, image, mask))
+           {
+		 gegl_vips_error ("unsharp");
+		 g_object_unref (image);
+		 return;
+          }
+
+        node->vips_image = image;
+        node->vips_hash = hash;
+	 */
 
 	    /*
 	       float conv

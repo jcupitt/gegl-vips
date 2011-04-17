@@ -59,8 +59,8 @@ gegl_save_prepare (GeglOperation * operation)
 	    /*
 
 	       just-save version
-
       	*/
+
       VipsImage *image;
 
       if (!(image = vips_image_new_from_file (o->path, "w")))
