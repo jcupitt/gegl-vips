@@ -112,15 +112,16 @@ Results
 
 On my laptop I get the following run times:
 
-	- gegl-0.1.6, default settings, png output, 96s r, 44s u
+	- gegl-0.1.6, png output, 96s r, 44s u
 
-I tried experimenting with various combinations of:
+Suggested tweaks for this application:
 
-	export GEGL_THREADS=2
-	export GEGL_SWAP=RAM
-	export GEGL_CACHE_SIZE=10
+	# keep the first 1gb of tiles in memory
+	export GEGL_CACHE_SIZE=1000
+	# alllow lower precision for int<->float conversions
+	export BABL_TOLERANCE=0.004
 
-but I couldn't make it faster, I probably missed something.
+	- gegl-0.1.6, png output, 63s r, 44s u
 
 gegl-vips, identical processing
 
