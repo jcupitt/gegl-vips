@@ -105,15 +105,11 @@ gegl_unsharp_prepare (GeglOperation * operation)
 		 g_object_unref (image);
 		 return;
           }
-
-        node->vips_image = image;
-        node->vips_hash = hash;
 	 */
 
 	    /*
 	    // 7x1 sep conv, what the gegl usharp is equivalent to
 	    // int version
-	 */
          VipsImage *image;
          INTMASK *mask;
 
@@ -128,9 +124,7 @@ gegl_unsharp_prepare (GeglOperation * operation)
 		 g_object_unref (image);
 		 return;
           }
-
-        node->vips_image = image;
-        node->vips_hash = hash;
+	 */
 
 	    /*
 	    // 7x1 sep conv, what the gegl usharp is equivalent to
@@ -147,16 +141,15 @@ gegl_unsharp_prepare (GeglOperation * operation)
 		 g_object_unref (image);
 		 return;
           }
-
-        node->vips_image = image;
-        node->vips_hash = hash;
 	 */
+
 
 	    /*
 	       float conv
 
 	       // gegl-like usharp
 
+	 */
       VipsImage *image;
       VipsImage *t[4];
       DOUBLEMASK *mask;
@@ -176,7 +169,6 @@ gegl_unsharp_prepare (GeglOperation * operation)
 	  g_object_unref (image);
 	  return;
 	}
-	 */
 
 	    /*
 

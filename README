@@ -37,8 +37,6 @@ main (int argc, char **argv)
                               "operation", "gegl:load",
                               "path", argv[1], 
                               NULL);
-  printf( "load is node %p\n", load );
-
   crop = gegl_node_new_child (gegl, 
                               "operation", "gegl:crop",
                               "x", 100.0,
@@ -46,8 +44,6 @@ main (int argc, char **argv)
                               "width", 4800.0, 
                               "height", 4800.0, 
                               NULL);
-  printf( "crop is node %p\n", crop );
-                
   scale = gegl_node_new_child (gegl,
                                "operation", "gegl:scale",
                                "x", 0.9,
@@ -55,21 +51,14 @@ main (int argc, char **argv)
                                "filter", "linear", 
                                "hard-edges", FALSE, 
                                NULL);
-  printf( "scale is node %p\n", scale );
-                
   sharp = gegl_node_new_child (gegl,
                                "operation", "gegl:unsharp-mask",
-                               "std-dev", 1.2, // diameter 7 mask in vips
-                               //"std-dev", 1.0, // diameter 7 mask in gegl
+                               "std-dev", 1.0, // diameter 7 mask in gegl
                                NULL);
-  printf( "sharp is node %p\n", sharp );
-
   save = gegl_node_new_child (gegl,
                               "operation", "gegl:save",
                               "path", argv[2], 
                               NULL);
-  printf( "save is node %p\n", save );
-                
   gegl_node_link_many (load, crop, scale, sharp, save, NULL);
  
   //gegl_node_dump( gegl, 0 );
@@ -153,26 +142,55 @@ usharp redone as a single conv
 	- gegl-vips, tif files, 1.0s r, 1.5s u
 	- gegl-vips, png files, 3.2s r, 4.0s u
 
+Results #2
+==========
+
+On a desktop machine with more RAM and a fast hard drive, but slightly
+slower 2 x 2.7 GHz Operton 254 processors, I get:
+
+        gegl-0.1.6, 
+                default settings 
+                        50s r, 44s u
+                export BABL_TOLERANCE=0.004
+                        46s r, 39s u
+                export BABL_TOLERANCE=0.004
+                export GEGL_SWAP=RAM
+                        41s r, 39s u (memuse peaks at 1.8gb)
+                + 8-bit PNG output
+                        38s r, 36s u
+
+        gegl-vips 
+                match gegl processing (don't forget to append :1 to the png 
+                output name to force compression == 1, the gegl default), 
+                        13.8s r, 22.1s u
+                + 8-bit output
+                        8.6s r, 14.4s u
+                + faster unsharp
+                        7.2s r, 11.2s u
+                + skip alpha
+                        5.9s r, 9.0s u
+                + tif files
+                        2.9s r, 5.0s u
+                + 8-bit path
+                        1.4s r, 1.9s u
+
+
 Conclusions
 ===========
 
-In the most comparable case, gegl-vips needs about 10s less CPU
-but finished 70s earlier, perhaps due to my slow laptop harddrive and
-gegl's tile cache. libvips has a nice threading system and double-buffered
-write-behind, which help too.
+In the most comparable case, gegl-vips needs about 15s less CPU
+but finishes 25s earlier, due to on-by-default threading. The difference is
+more marked on the laptop where the slow harddrive hurs the tile cache.
 
-Using a relatively fast, uncompressed file format (tif) saves 15s.
+Only saving 8-bit PNGs saves 5s.
 
-Dropping the alpha channel (not needed in this case) saves 5s.
+Faster unsharp, save 1.5s.
 
-Use LUTs for linearization, save 12s.
+Dropping the alpha channel (not needed in this case) saves 1.3s.
 
-Faster convolution, save 1s.
+Using the faster libtif saves 3s.
 
-8-bit output (we don't really need 16 bit in this case) gives a small saving
-for tif, but a large saving for png.
-
-A complete 8-bit path, save 3s.
+Using an 8-bit path throughout saves another 1.5s.
 
 How it works
 ============

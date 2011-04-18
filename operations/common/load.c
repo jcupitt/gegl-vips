@@ -78,7 +78,7 @@ gegl_load_prepare (GeglOperation * operation)
   if (!node->vips_image || node->vips_hash != hash)
     {
       VipsImage *image;
-      VipsImage *t[8];
+      VipsImage *t[10];
 
       image = vips_image_new ("p");
 
@@ -87,8 +87,8 @@ gegl_load_prepare (GeglOperation * operation)
       if (vips_image_new_array (VIPS_OBJECT(image), t, 4) ||
         !(t[3] = vips_image_new_from_file (o->path, "r")) ||
 	 im_identity (t[0], 1) ||
-	 im_logtra (t[0], t[1]) ||
-	 im_lintra (255.0 / log (255.0), t[1], 0.0, t[2]) ||
+	 im_powtra (t[0], t[1], 1.0 / 2.4) ||
+	 im_lintra (255.0 / pow (255.0, 1.0 / 2.4), t[1], 0.0, t[2]) ||
 	 im_maplut (t[3], image, t[2]))
 	{
 	  gegl_vips_error ("load");
@@ -98,11 +98,31 @@ gegl_load_prepare (GeglOperation * operation)
 		 */
 
       /*
+      // load as linear float with a LUT, add an alpha channel
+		 */
+      if (vips_image_new_array (VIPS_OBJECT(image), t, 10) ||
+        !(t[0] = vips_image_new_from_file (o->path, "r")) ||
+	 im_black (t[1], 1, 1, 1) ||
+	 im_lintra (1, t[1], 255.0, t[2]) ||
+	 im_clip2fmt (t[2], t[3], VIPS_FORMAT_UCHAR) ||
+	 im_embed (t[3], t[4], 1, 0, 0, t[0]->Xsize, t[0]->Ysize) ||
+	 im_bandjoin (t[0], t[4], t[5]) ||
+	 im_identity (t[6], 1) ||
+	 im_powtra (t[6], t[7], 1.0 / 2.4) ||
+	 im_lintra (255.0 / pow (255.0, 1.0 / 2.4), t[7], 0.0, t[8]) ||
+	 im_maplut (t[5], image, t[8]))
+	{
+	  gegl_vips_error ("load");
+	  g_object_unref (image);
+	  return;
+	}
+
+      /*
       // load as linear float, no LUT
       if (vips_image_new_array (VIPS_OBJECT(image), t, 4) ||
         !(t[0] = vips_image_new_from_file (o->path, "r")) ||
 	 im_lintra (1.0 / 255.0, t[0], 0.0, t[1]) ||
-	 im_logtra (t[1], image))
+	 im_powtra (t[1], image, 1.0 / 2.4))
 	{
 	  gegl_vips_error ("load");
 	  g_object_unref (image);
@@ -120,7 +140,7 @@ gegl_load_prepare (GeglOperation * operation)
 	 im_embed (t[4], t[5], 1, 0, 0, t[0]->Xsize, t[0]->Ysize) ||
 	 im_bandjoin (t[0], t[5], t[6]) ||
 	 im_lintra (1.0 / 255.0, t[6], 0.0, t[7]) ||
-	 im_logtra (t[7], image))
+	 im_powtra (t[7], image, 1.0 / 2.4))
 	{
 	  gegl_vips_error ("load");
 	  g_object_unref (image);
@@ -131,13 +151,13 @@ gegl_load_prepare (GeglOperation * operation)
       /*
 
 	 int version
-       */
 
 	if (!(image = vips_image_new_from_file (o->path, "r")))
 	  {
 	    gegl_vips_error ("load");
 	    return;
 	  }
+       */
 
 
       node->vips_image = image;
