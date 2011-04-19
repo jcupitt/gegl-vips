@@ -15,7 +15,6 @@ Test program
 #include <stdlib.h>
 
 #include <gegl.h>
-#include <vips/vips.h>
 
 int
 main (int argc, char **argv)
@@ -84,7 +83,7 @@ for results with other libraries.
 
 Compile with:
 
-   gcc -g -Wall gegl.c `pkg-config gegl vips-7.25 --cflags --libs`
+   gcc -g -Wall gegl.c `pkg-config gegl --cflags --libs`
 
 and run with something like:
 
@@ -101,46 +100,31 @@ Results
 
 On my laptop I get the following run times:
 
-	- gegl-0.1.6, png output, 96s r, 44s u
+        gegl-0.1.6, 
+                default settings 
+                        70s r, 39 u
+                export BABL_TOLERANCE=0.004
+                        65s r, 33s u
+                export BABL_TOLERANCE=0.004
+                export GEGL_CACHE_SIZE=1000 (my laptop only has 2gb)
+                        53 r, 34s u (memuse peaks at 1.0gb)
+                + 8-bit PNG output
+                        47s r, 30s u
 
-Suggested tweaks for this application:
-
-	# keep the first 1gb of tiles in memory
-	export GEGL_CACHE_SIZE=1000
-	# alllow lower precision for int<->float conversions
-	export BABL_TOLERANCE=0.004
-
-	- gegl-0.1.6, png output, 63s r, 44s u
-
-gegl-vips, identical processing
-
-	- gegl-vips, tif files, 15s r, 23s u
-	- gegl-vips, png files, 27s r, 38s u
-
-no alpha
-
-	- gegl-vips, tif files, 12s r, 18s u
-	- gegl-vips, png files, 20s r, 20s u
-
-use LUTs for int->float and back
-
-	- gegl-vips, tif files, 3.9s r, 5.3s u
-	- gegl-vips, png files, 14.8s r, 17.7s u
-
-usharp redone as a single conv
-
-	- gegl-vips, tif files, 2.9s r, 4.2s u
-	- gegl-vips, png files, 12.6s r, 15.8s u
-
-8-bit output
-
-	- gegl-vips, tif files, 2.3s r, 4.0s u
-	- gegl-vips, png files, 6.0s r, 8.4s u
-
-8-bit path 
-
-	- gegl-vips, tif files, 1.0s r, 1.5s u
-	- gegl-vips, png files, 3.2s r, 4.0s u
+        gegl-vips 
+                match gegl processing (don't forget to append :1 to the png 
+                output name to force compression == 1, the gegl default), 
+                        19s r, 23s u
+                + 8-bit output
+                        10s r, 14s u
+                + faster unsharp
+                        7.8s r, 10.6s u
+                + skip alpha
+                        6.5s r, 8.5s u
+                + tif files
+                        3.0s r, 3.8s u
+                + 8-bit path
+                        1.0s r, 1.4s u
 
 Results #2
 ==========
@@ -180,7 +164,7 @@ Conclusions
 
 In the most comparable case, gegl-vips needs about 15s less CPU
 but finishes 25s earlier, due to on-by-default threading. The difference is
-more marked on the laptop where the slow harddrive hurs the tile cache.
+more marked on the laptop where the slow harddrive hurts the tile cache.
 
 Only saving 8-bit PNGs saves 5s.
 

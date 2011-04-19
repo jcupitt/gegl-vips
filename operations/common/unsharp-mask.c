@@ -110,6 +110,7 @@ gegl_unsharp_prepare (GeglOperation * operation)
 	    /*
 	    // 7x1 sep conv, what the gegl usharp is equivalent to
 	    // int version
+	 */
          VipsImage *image;
          INTMASK *mask;
 
@@ -124,7 +125,6 @@ gegl_unsharp_prepare (GeglOperation * operation)
 		 g_object_unref (image);
 		 return;
           }
-	 */
 
 	    /*
 	    // 7x1 sep conv, what the gegl usharp is equivalent to
@@ -149,7 +149,6 @@ gegl_unsharp_prepare (GeglOperation * operation)
 
 	       // gegl-like usharp
 
-	 */
       VipsImage *image;
       VipsImage *t[4];
       DOUBLEMASK *mask;
@@ -169,6 +168,7 @@ gegl_unsharp_prepare (GeglOperation * operation)
 	  g_object_unref (image);
 	  return;
 	}
+	 */
 
 	    /*
 

@@ -59,6 +59,7 @@ gegl_save_prepare (GeglOperation * operation)
 	    /*
 
 	       just-save version
+      	*/
 
       VipsImage *image;
 
@@ -74,7 +75,6 @@ gegl_save_prepare (GeglOperation * operation)
 	  return;
 	}
       g_object_unref (image);
-      	*/
 
 	    /*
 
@@ -108,7 +108,6 @@ gegl_save_prepare (GeglOperation * operation)
 	    /*
 
 	       float to 16-bit int version
-       */
       VipsImage *image;
       VipsImage *t[7];
 
@@ -134,6 +133,7 @@ gegl_save_prepare (GeglOperation * operation)
 	  return;
 	}
       g_object_unref (image);
+       */
 
 	    /*
 

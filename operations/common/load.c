@@ -99,7 +99,6 @@ gegl_load_prepare (GeglOperation * operation)
 
       /*
       // load as linear float with a LUT, add an alpha channel
-		 */
       if (vips_image_new_array (VIPS_OBJECT(image), t, 10) ||
         !(t[0] = vips_image_new_from_file (o->path, "r")) ||
 	 im_black (t[1], 1, 1, 1) ||
@@ -116,6 +115,7 @@ gegl_load_prepare (GeglOperation * operation)
 	  g_object_unref (image);
 	  return;
 	}
+		 */
 
       /*
       // load as linear float, no LUT
@@ -152,12 +152,12 @@ gegl_load_prepare (GeglOperation * operation)
 
 	 int version
 
+       */
 	if (!(image = vips_image_new_from_file (o->path, "r")))
 	  {
 	    gegl_vips_error ("load");
 	    return;
 	  }
-       */
 
 
       node->vips_image = image;
